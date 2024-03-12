@@ -47,10 +47,10 @@ public class MainFormController implements Initializable {
      * @param event Add button clicked
      * */
     @FXML
-    void onActionAddPart(ActionEvent event) throws IOException {
+    void onActionCreateCustomer(ActionEvent event) throws IOException {
 
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(getClass().getResource("/view/AddPartForm.fxml"));
+        scene = FXMLLoader.load(getClass().getResource("/view/CreateCustomerForm.fxml"));
         stage.setScene(new Scene(scene));
         stage.show();
     }
@@ -66,8 +66,8 @@ public class MainFormController implements Initializable {
             loader.setLocation(getClass().getResource("/view/ModifyPartForm.fxml"));
             loader.load();
 
-            ModifyPartFormController MPFController = loader.getController();
-            MPFController.sendPart((Customer) partsTable.getSelectionModel().getSelectedItem());
+            ModifyCustomerController MPFController = loader.getController();
+            MPFController.sendCustomer((Customer) partsTable.getSelectionModel().getSelectedItem());
 
             stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
             Parent scene = loader.getRoot();
@@ -83,10 +83,6 @@ public class MainFormController implements Initializable {
     }
 
     /** Deletes the selected part.
-     * LOGIC ERROR
-     * The program had a logic error where two products/parts could end up with the same ID if a product/part was deleted due to the way IDs are generated.
-     * I decided that when a product/part was deleted to decrement each partID/productID with a higher ID by one to ensure IDs remain unique.
-     * I also could have probably put any used IDs in an observable list and iterated through the list with a for loop to make sure the id had not been used already, but I decided this was simpler.
      * @param event Delete button clicked
      * */
     @FXML
@@ -125,10 +121,10 @@ public class MainFormController implements Initializable {
      * @param event Add button clicked
      * */
     @FXML
-    void onActionAddProduct(ActionEvent event) throws IOException {
+    void onActionCreateTicket(ActionEvent event) throws IOException {
 
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(getClass().getResource("/view/AddProductForm.fxml"));
+        scene = FXMLLoader.load(getClass().getResource("/view/CreateTicketForm.fxml"));
         stage.setScene(new Scene(scene));
         stage.show();
     }
@@ -137,14 +133,14 @@ public class MainFormController implements Initializable {
      * @param event Modify button clicked
      * */
     @FXML
-    void onActionModifyProduct(ActionEvent event) throws IOException {
+    void onActionModifyTicket(ActionEvent event) throws IOException {
 
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/view/ModifyProductForm.fxml"));
             loader.load();
 
-            ModifyProductFormController MPFController = loader.getController();
+            ModifyTicketController MPFController = loader.getController();
             MPFController.sendProduct((Ticket) productsTable.getSelectionModel().getSelectedItem());
 
             stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
@@ -163,10 +159,6 @@ public class MainFormController implements Initializable {
 
 
     /** Deletes the selected product.
-     * LOGIC ERROR
-     * The program had a logic error where two products/parts could end up with the same ID if a product/part was deleted due to the way IDs are generated.
-     * I decided that when a product/part was deleted to decrement each partID/productID with a higher ID by one to ensure IDs remain unique.
-     * I also could have probably put any used IDs in an observable list and iterated through the list with a for loop to make sure the id had not been used already, but I decided this was simpler.
      * @param event Delete button clicked
      * */
     @FXML

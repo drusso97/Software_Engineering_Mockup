@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ModifyPartFormController implements Initializable {
+public class ModifyCustomerController implements Initializable {
 
     public RadioButton inHouse;
     public RadioButton Outsourced;
@@ -59,7 +59,7 @@ public class ModifyPartFormController implements Initializable {
      @param actionEvent The Save button is clicked
      */
     @FXML
-    void onActionSavePart(ActionEvent actionEvent) throws IOException {
+    void onActionSaveCustomer(ActionEvent actionEvent) throws IOException {
 
         try {
             String idS = partIdLbl.getText();
@@ -141,24 +141,24 @@ public class ModifyPartFormController implements Initializable {
     }
 
     /** This method sends the selected part to the Modify Part Form.
-     @param selectedPart The selected part
+     @param selectedCustomer The selected part
      */
-    public void sendPart(Customer selectedPart) {
+    public void sendCustomer(Customer selectedCustomer) {
 
-        partIdLbl.setText(String.valueOf(selectedPart.getId()));
-        nameTF.setText(String.valueOf(selectedPart.getName()));
-        invTF.setText(String.valueOf(selectedPart.getStock()));
-        priceTF.setText(String.valueOf(selectedPart.getPrice()));
-        maxTF.setText(String.valueOf(selectedPart.getMax()));
-        minTF.setText(String.valueOf(selectedPart.getMin()));
+        partIdLbl.setText(String.valueOf(selectedCustomer.getId()));
+        nameTF.setText(String.valueOf(selectedCustomer.getName()));
+        invTF.setText(String.valueOf(selectedCustomer.getStock()));
+        priceTF.setText(String.valueOf(selectedCustomer.getPrice()));
+        maxTF.setText(String.valueOf(selectedCustomer.getMax()));
+        minTF.setText(String.valueOf(selectedCustomer.getMin()));
 
-        if(selectedPart instanceof Outsourced) {
-            toggleTF.setText(String.valueOf(((Outsourced) selectedPart).getCompanyName()));
+        if(selectedCustomer instanceof Outsourced) {
+            toggleTF.setText(String.valueOf(((Outsourced) selectedCustomer).getCompanyName()));
             Outsourced.setSelected(true);
             toggleText.setText("Company Name");
         }
-        else if(selectedPart instanceof InHouse) {
-            toggleTF.setText(String.valueOf(((InHouse) selectedPart).getMachineId()));
+        else if(selectedCustomer instanceof InHouse) {
+            toggleTF.setText(String.valueOf(((InHouse) selectedCustomer).getMachineId()));
             inHouse.setSelected(true);
             toggleText.setText("Machine ID");
         }

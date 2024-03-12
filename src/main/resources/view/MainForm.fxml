@@ -25,7 +25,7 @@
       </TableView>
       <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="260.0" prefHeight="35.0" prefWidth="480.0" spacing="10.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#onActionAddPart" text="Add" />
+            <Button mnemonicParsing="false" onAction="#onActionCreateCustomer" text="Add" />
             <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onActionModifyPart" text="Modify">
                <HBox.margin>
                   <Insets />
@@ -34,7 +34,7 @@
             <Button layoutX="444.0" layoutY="27.0" mnemonicParsing="false" onAction="#onActionDeletePart" text="Delete" />
          </children>
       </HBox>
-      <Label prefHeight="41.0" prefWidth="1050.0" text="Inventory Management System">
+      <Label prefHeight="41.0" prefWidth="1050.0" text="MJ Logistics Gaming Company">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -76,8 +76,8 @@
       </TableView>
       <HBox alignment="CENTER_RIGHT" layoutX="505.0" layoutY="260.0" prefHeight="35.0" prefWidth="480.0" spacing="10.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#onActionAddProduct" text="Add" />
-            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onActionModifyProduct" text="Modify">
+            <Button mnemonicParsing="false" onAction="#onActionCreateTicket" text="Add" />
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onActionModifyTicket" text="Modify">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -108,5 +108,13 @@
             <TextField fx:id="productSearchField" onKeyPressed="#onProductSearch" promptText="Search by Ticket ID" GridPane.columnIndex="1" />
          </children>
       </GridPane>
+      <Label layoutX="813.0" layoutY="329.0" prefHeight="33.0" prefWidth="175.0" text="Innovative Software Solutions © 2024">
+         <font>
+            <Font name="System Bold" size="10.0" />
+         </font>
+         <padding>
+            <Insets bottom="10.0" left="10.0" top="10.0" />
+         </padding>
+      </Label>
    </children>
 </AnchorPane>

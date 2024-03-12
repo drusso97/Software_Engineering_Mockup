@@ -11,7 +11,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.Inventory;
 import model.Customer;
@@ -22,37 +21,38 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class ModifyProductFormController implements Initializable {
 
-    public GridPane modifyProductGP;
+public class CreateTicketController implements Initializable {
+
+    public TableView allPartsTable;
     public TableColumn allPartsIdCol;
     public TableColumn allPartsNameCol;
     public TableColumn allPartsInvCol;
     public TableColumn allPartsCostCol;
+    public TableView associatedPartsTable;
     public TableColumn associatedPartsIdCol;
     public TableColumn associatedPartsNameCol;
     public TableColumn associatedPartsInvCol;
     public TableColumn associatedPartsCostCol;
-    public TextField productIdLbl;
+    public TextField idTF;
     public TextField nameTF;
     public TextField invTF;
     public TextField priceTF;
     public TextField maxTF;
     public TextField minTF;
-    public TableView allPartsTable;
-    public TableView associatedPartsTable;
     public TextField partSearchField;
+    private ObservableList<Customer> productAssociatedParts = FXCollections.observableArrayList();
     Stage stage;
     Parent scene;
-    private ObservableList<Customer> productAssociatedParts = FXCollections.observableArrayList();
+
 
     /** Returns to program's main menu.
-     * @param actionEvent Cancel button is clicked
+     * @param event Cancel button is clicked
      * */
     @FXML
-    void onActionDisplayMainMenu(ActionEvent actionEvent) throws IOException {
+    void onActionDisplayMainMenu(ActionEvent event) throws IOException {
 
-        stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
+        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(getClass().getResource("/view/MainForm.fxml"));
         stage.setScene(new Scene(scene));
         stage.show();
@@ -66,19 +66,18 @@ public class ModifyProductFormController implements Initializable {
 
         Customer SP = (Customer) allPartsTable.getSelectionModel().getSelectedItem();
 
-        if(SP == null) {
-
+        if(SP == null)
+        {
             Alert noPartSelected = new Alert(Alert.AlertType.ERROR);
             noPartSelected.setTitle("Error");
             noPartSelected.setContentText("Please select a part!");
             noPartSelected.showAndWait();
-
         }
-        else if(!productAssociatedParts.contains(SP)) {
+        else if(!productAssociatedParts.contains(SP))
+        {
             productAssociatedParts.add(SP);
             associatedPartsTable.setItems(productAssociatedParts);
         }
-
     }
 
     /** Removes a part from the product's associated parts.
@@ -97,40 +96,39 @@ public class ModifyProductFormController implements Initializable {
         {
             Customer SP = (Customer) associatedPartsTable.getSelectionModel().getSelectedItem();
 
-            if (SP == null)
-            {
-
+            if (SP == null) {
                 Alert noPartSelected = new Alert(Alert.AlertType.ERROR);
                 noPartSelected.setTitle("Error");
                 noPartSelected.setContentText("Please select a part!");
                 noPartSelected.showAndWait();
-            }
-            else if(productAssociatedParts.contains(SP))
-            {
+            } else if (productAssociatedParts.contains(SP)) {
                 productAssociatedParts.remove(SP);
                 associatedPartsTable.setItems(productAssociatedParts);
             }
-
         }
-
     }
 
-    /** Saves the new product and returns to main menu.
+    /** Saves changes to the product and returns to main menu.
      * @param actionEvent Save button is clicked
      * */
-    @FXML
-    void onSave(ActionEvent actionEvent) throws IOException {
+    public void onSave(ActionEvent actionEvent) throws IOException {
 
         try
         {
-            String idS = productIdLbl.getText();
+            int id = Inventory.getAllProducts().size() + 1; // id starts at one and increments by one when a new product is added
+
+            // This for loop ensures that ids are never repeated by checking if the id is always in the list
+            for (Ticket product : Inventory.getAllProducts()) {
+                if (product.getId() == id)
+                    id++;
+            }
+
             String nameS = nameTF.getText();
             String invS = invTF.getText();
             String priceS = priceTF.getText();
             String maxS = maxTF.getText();
             String minS = minTF.getText();
 
-            int id = Integer.parseInt(idS);
             int stock = Integer.parseInt(invS);
             double price = Double.parseDouble(priceS);
             int max = Integer.parseInt(maxS);
@@ -176,14 +174,11 @@ public class ModifyProductFormController implements Initializable {
 
             Ticket newProduct = new Ticket(id, nameS, price, stock, min, max);
 
-            int index = id - 1;
-
-            for (Customer part: productAssociatedParts) {
-                if (!newProduct.getAllAssociatedParts().contains(part))
-                    newProduct.addAssociatedPart(part);
+            for (Customer part : productAssociatedParts) {
+                newProduct.addAssociatedPart(part);
             }
 
-            Inventory.updateProduct(index, newProduct);
+            Inventory.addProduct(newProduct);
 
             stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
             scene = FXMLLoader.load(getClass().getResource("/view/MainForm.fxml"));
@@ -197,24 +192,6 @@ public class ModifyProductFormController implements Initializable {
             alert.setContentText("One or more fields has an incorrect value type or is blank!");
             alert.showAndWait();
         }
-    }
-
-    /** Sends the selected product from the main manu to the modify product form.
-     * @param product The selected product
-     * */
-    public void sendProduct(Ticket product) {
-
-        productIdLbl.setText(String.valueOf(product.getId()));
-        nameTF.setText(String.valueOf(product.getName()));
-        invTF.setText(String.valueOf(product.getStock()));
-        priceTF.setText(String.valueOf(product.getPrice()));
-        maxTF.setText(String.valueOf(product.getMax()));
-        minTF.setText(String.valueOf(product.getMin()));
-
-        for(Customer part : product.getAllAssociatedParts()) {
-            productAssociatedParts.add(part);
-        }
-
     }
 
     /** Searches for parts by a given integer or string.
@@ -262,4 +239,5 @@ public class ModifyProductFormController implements Initializable {
         associatedPartsCostCol.setCellValueFactory(new PropertyValueFactory<>("price"));
 
     }
+
 }

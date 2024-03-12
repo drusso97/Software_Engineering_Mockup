@@ -12,11 +12,11 @@ import model.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-public class AddPartFormController implements Initializable {
+public class CreateCustomerController implements Initializable {
 
-    public Label toggleText;
     public RadioButton inHouse;
     public RadioButton outsourced;
     public TextField partNameTF;
@@ -25,6 +25,7 @@ public class AddPartFormController implements Initializable {
     public TextField partMaxTF;
     public TextField partMinTF;
     public TextField toggleTF;
+    public DatePicker datePickerTF;
     Stage stage;
     Parent scene;
 
@@ -40,25 +41,11 @@ public class AddPartFormController implements Initializable {
         stage.show();
     }
 
-    /** This method sets the text label if the inHouse Radio Button is selected.
-     @param actionEvent The inHouse button is selected
-     */
-    public void onInHouse(ActionEvent actionEvent) {
-        toggleText.setText("Machine ID");
-    }
-
-    /** This method sets the text label if the outSourced Radio Button is selected.
-     @param actionEvent The outSourced button is selected
-     */
-    public void onOutsourced(ActionEvent actionEvent) {
-        toggleText.setText("Company Name");
-    }
-
     /** This method saves the part and returns to the Main Menu when Save is clicked.
      @param actionEvent The Save button is clicked
      */
     @FXML
-    void onActionSavePart(ActionEvent actionEvent) throws IOException {
+    void onActionSaveCustomer(ActionEvent actionEvent) throws IOException {
 
         try {
             int id = Inventory.getAllParts().size() + 1; // id starts at one and increments by one when a new product is added
@@ -151,6 +138,7 @@ public class AddPartFormController implements Initializable {
      * */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        datePickerTF.setValue(LocalDate.now());
     }
 
 }

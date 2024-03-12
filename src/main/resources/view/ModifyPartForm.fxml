@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ModifyPartFormController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ModifyCustomerController">
     <children>
         <VBox prefHeight="340.0" prefWidth="360.0">
             <children>
@@ -78,7 +78,7 @@
                 </GridPane>
                 <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#onActionSavePart" text="Save" />
+                        <Button mnemonicParsing="false" onAction="#onActionSaveCustomer" text="Save" />
                         <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onActionDisplayMainMenu" text="Cancel" />
                     </children>
                     <VBox.margin>
