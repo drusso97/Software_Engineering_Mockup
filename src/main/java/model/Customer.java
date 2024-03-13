@@ -3,13 +3,13 @@ package model;
 /**
  * Class defines part objects.
  * */
-public abstract class Customer {
+public class Customer {
 
     private int id;
     private String name;
     private String phoneNumber;
     private String emailAddress;
-    protected Customer(int id, String name, String phoneNumber, String emailAddress) {
+    public Customer(int id, String name, String phoneNumber, String emailAddress) {
         this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;

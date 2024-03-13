@@ -12,7 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import model.Inventory;
+import model.Database;
 import model.Customer;
 import model.Ticket;
 
@@ -115,10 +115,10 @@ public class CreateTicketController implements Initializable {
 
         try
         {
-            int id = Inventory.getAllProducts().size() + 1; // id starts at one and increments by one when a new product is added
+            int id = Database.getAllTickets().size() + 1; // id starts at one and increments by one when a new product is added
 
             // This for loop ensures that ids are never repeated by checking if the id is always in the list
-            for (Ticket product : Inventory.getAllProducts()) {
+            for (Ticket product : Database.getAllTickets()) {
                 if (product.getId() == id)
                     id++;
             }
@@ -178,7 +178,7 @@ public class CreateTicketController implements Initializable {
                 newProduct.addAssociatedPart(part);
             }
 
-            Inventory.addProduct(newProduct);
+            Database.createTicket(newProduct);
 
             stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
             scene = FXMLLoader.load(getClass().getResource("/view/MainForm.fxml"));
@@ -200,13 +200,13 @@ public class CreateTicketController implements Initializable {
     public void onPartSearch(KeyEvent event) {
 
         String searchString = partSearchField.getText();
-        ObservableList<Customer> searchResults = Inventory.lookupPart(searchString);
+        ObservableList<Customer> searchResults = Database.searchCustomer(searchString);
 
         try
         {
             while (searchResults.isEmpty()) {
                 int searchId = Integer.parseInt(searchString);
-                searchResults.add(Inventory.lookupPart(searchId));
+                searchResults.add(Database.searchCustomer(searchId));
             }
             allPartsTable.setItems(searchResults);
         }
@@ -226,7 +226,7 @@ public class CreateTicketController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        allPartsTable.setItems(Inventory.getAllParts());
+        allPartsTable.setItems(Database.getAllCustomers());
         allPartsIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         allPartsNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         allPartsInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));

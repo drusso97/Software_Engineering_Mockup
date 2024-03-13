@@ -13,7 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import model.Inventory;
+import model.Database;
 import model.Customer;
 import model.Ticket;
 
@@ -183,7 +183,7 @@ public class ModifyTicketController implements Initializable {
                     newProduct.addAssociatedPart(part);
             }
 
-            Inventory.updateProduct(index, newProduct);
+            Database.updateTicket(index, newProduct);
 
             stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
             scene = FXMLLoader.load(getClass().getResource("/view/MainForm.fxml"));
@@ -223,13 +223,13 @@ public class ModifyTicketController implements Initializable {
     public void onPartSearch(KeyEvent event) {
 
         String searchString = partSearchField.getText();
-        ObservableList<Customer> searchResults = Inventory.lookupPart(searchString);
+        ObservableList<Customer> searchResults = Database.searchCustomer(searchString);
 
         try
         {
             while (searchResults.isEmpty()) {
                 int searchId = Integer.parseInt(searchString);
-                searchResults.add(Inventory.lookupPart(searchId));
+                searchResults.add(Database.searchCustomer(searchId));
             }
             allPartsTable.setItems(searchResults);
         }
@@ -249,7 +249,7 @@ public class ModifyTicketController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        allPartsTable.setItems(Inventory.getAllParts());
+        allPartsTable.setItems(Database.getAllCustomers());
         allPartsIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         allPartsNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         allPartsInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));

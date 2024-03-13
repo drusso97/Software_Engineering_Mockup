@@ -48,10 +48,10 @@ public class CreateCustomerController implements Initializable {
     void onActionSaveCustomer(ActionEvent actionEvent) throws IOException {
 
         try {
-            int id = Inventory.getAllParts().size() + 1; // id starts at one and increments by one when a new product is added
+            int id = Database.getAllCustomers().size() + 1; // id starts at one and increments by one when a new product is added
 
             // This for loop ensures that ids are never repeated by checking if the id is always in the list
-            for (Customer part : Inventory.getAllParts()) {
+            for (Customer part : Database.getAllCustomers()) {
                 if (part.getId() == id)
                     id++;
             }

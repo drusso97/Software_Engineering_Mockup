@@ -4,7 +4,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.Inventory;
+import model.Customer;
+import model.Database;
 import model.Ticket;
 
 import java.io.IOException;
@@ -34,23 +35,25 @@ public class InventoryApplication extends Application {
     private static void addTestData(){
 
         Ticket cruze = new Ticket(1, "Cruze", 24000, 12, 10, 20);
-        Inventory.addProduct(cruze);
+        Database.createTicket(cruze);
 
         Ticket civic = new Ticket(2, "Civic", 34000, 15, 10, 20);
-        Inventory.addProduct(civic);
+        Database.createTicket(civic);
 
         Ticket jeep = new Ticket(3, "Jeep", 41000, 7, 3, 20);
-        Inventory.addProduct(jeep);
+        Database.createTicket(jeep);
 
         Ticket tesla = new Ticket(4, "Tesla", 75000, 5, 2, 17);
-        Inventory.addProduct(tesla);
+        Database.createTicket(tesla);
 
         Ticket f150 = new Ticket(5, "F150", 40000, 20, 10, 50);
-        Inventory.addProduct(f150);
+        Database.createTicket(f150);
 
         Ticket trailblazer = new Ticket(6, "Trail Blazer", 40000, 7, 5, 20);
-        Inventory.addProduct(trailblazer);
+        Database.createTicket(trailblazer);
 
+        Customer customer1 = new Customer(1, "John Doe", "123-456-7891", "jdoe@gmail.com");
+        Database.createCustomer(customer1);
     }
 
     /** This is the main method. This is the first method that gets called when you run your java program. */

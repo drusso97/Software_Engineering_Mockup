@@ -11,7 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import model.Inventory;
+import model.Database;
 import model.Customer;
 import model.Ticket;
 
@@ -104,7 +104,7 @@ public class MainFormController implements Initializable {
 
                 partsTable.getItems().removeAll(partsTable.getSelectionModel().getSelectedItem());
 
-                for (Customer part : Inventory.getAllParts())
+                for (Customer part : Database.getAllCustomers())
                     if (part.getId() > id)
                         part.setId(part.getId() - 1);
             }
@@ -188,7 +188,7 @@ public class MainFormController implements Initializable {
                     productsTable.getItems().removeAll(productsTable.getSelectionModel().getSelectedItem());
 
                 // makes sure that Ids are never duplicated by decrementing each higher product id by one when a part is deleted. This is necessary due to the way ids are generated
-                for (Ticket product : Inventory.getAllProducts())
+                for (Ticket product : Database.getAllTickets())
                     if (product.getId() > id)
                         product.setId(product.getId() - 1);
             } catch (NullPointerException e) {
@@ -206,13 +206,13 @@ public class MainFormController implements Initializable {
     public void onProductSearch(KeyEvent event) {
 
         String searchString = productSearchField.getText();
-        ObservableList<Ticket> searchResults = Inventory.lookupProduct(searchString);
+        ObservableList<Ticket> searchResults = Database.searchTicket(searchString);
 
         try
         {
             while (searchResults.isEmpty()) {
                 int searchId = Integer.parseInt(searchString);
-                searchResults.add(Inventory.lookupProduct(searchId));
+                searchResults.add(Database.searchTicket(searchId));
             }
             productsTable.setItems(searchResults);
         }
@@ -231,13 +231,13 @@ public class MainFormController implements Initializable {
     public void onPartSearch(KeyEvent event) {
 
         String searchString = partSearchField.getText();
-        ObservableList<Customer> searchResults = Inventory.lookupPart(searchString);
+        ObservableList<Customer> searchResults = Database.searchCustomer(searchString);
 
         try
         {
             while (searchResults.isEmpty()) {
                 int searchId = Integer.parseInt(searchString);
-                searchResults.add(Inventory.lookupPart(searchId));
+                searchResults.add(Database.searchCustomer(searchId));
             }
             partsTable.setItems(searchResults);
         }
@@ -257,13 +257,13 @@ public class MainFormController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        productsTable.setItems(Inventory.getAllProducts());
+        productsTable.setItems(Database.getAllTickets());
         productIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         productNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         productInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         productCostCol.setCellValueFactory(new PropertyValueFactory<>("price"));
 
-        partsTable.setItems(Inventory.getAllParts());
+        partsTable.setItems(Database.getAllCustomers());
         partIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         partNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         partInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
