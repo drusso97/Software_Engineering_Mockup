@@ -15,12 +15,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="995.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainFormController">
    <children>
-      <TableView fx:id="partsTable" layoutX="10.0" layoutY="70.0" prefHeight="182.0" prefWidth="480.0">
+      <TableView fx:id="customerTable" layoutX="10.0" layoutY="70.0" prefHeight="182.0" prefWidth="480.0">
          <columns>
-            <TableColumn fx:id="partIdCol" prefWidth="30.0" text="ID" />
-            <TableColumn fx:id="partNameCol" prefWidth="150.0" text="First/Last Name" />
-            <TableColumn fx:id="partInvCol" prefWidth="150.0" text="Email Address" />
-            <TableColumn fx:id="partCostCol" prefWidth="150.0" text="Phone Number" />
+            <TableColumn fx:id="customerIdCol" prefWidth="30.0" text="ID" />
+            <TableColumn fx:id="customerNameCol" prefWidth="150.0" text="First/Last Name" />
+            <TableColumn fx:id="customerEmailCol" prefWidth="150.0" text="Email Address" />
+            <TableColumn fx:id="customerPhoneCol" prefWidth="150.0" text="Phone Number" />
          </columns>
       </TableView>
       <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="260.0" prefHeight="35.0" prefWidth="480.0" spacing="10.0">
@@ -66,12 +66,12 @@
             </GridPane>
          </children>
       </HBox>
-      <TableView fx:id="productsTable" layoutX="505.0" layoutY="70.0" prefHeight="182.0" prefWidth="480.0">
+      <TableView fx:id="ticketTable" layoutX="505.0" layoutY="70.0" prefHeight="182.0" prefWidth="480.0">
          <columns>
-            <TableColumn fx:id="productIdCol" prefWidth="30.0" text="ID" />
-            <TableColumn fx:id="productNameCol" prefWidth="150.0" text="Date Created" />
-            <TableColumn fx:id="productInvCol" prefWidth="150.0" text="Status" />
-            <TableColumn fx:id="productCostCol" prefWidth="150.0" text="Priority" />
+            <TableColumn fx:id="ticketIdCol" prefWidth="30.0" text="ID" />
+            <TableColumn fx:id="ticketCreationDateCol" prefWidth="150.0" text="Date Created" />
+            <TableColumn fx:id="ticketStatusCol" prefWidth="150.0" text="Status" />
+            <TableColumn fx:id="ticketPriorityCol" prefWidth="150.0" text="Priority" />
          </columns>
       </TableView>
       <HBox alignment="CENTER_RIGHT" layoutX="505.0" layoutY="260.0" prefHeight="35.0" prefWidth="480.0" spacing="10.0">
@@ -105,7 +105,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <TextField fx:id="productSearchField" onKeyPressed="#onProductSearch" promptText="Search by Ticket ID" GridPane.columnIndex="1" />
+            <TextField fx:id="productSearchField" onKeyPressed="#onTicketSearch" promptText="Search by Ticket ID" GridPane.columnIndex="1" />
          </children>
       </GridPane>
       <Label layoutX="813.0" layoutY="329.0" prefHeight="33.0" prefWidth="175.0" text="Innovative Software Solutions © 2024">

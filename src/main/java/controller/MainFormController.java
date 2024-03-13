@@ -22,18 +22,18 @@ import java.util.ResourceBundle;
 
 public class MainFormController implements Initializable {
 
-    public TableView partsTable;
-    public TableColumn partIdCol;
-    public TableColumn partNameCol;
-    public TableColumn partInvCol;
-    public TableColumn partCostCol;
-    public TableView productsTable;
-    public TableColumn productIdCol;
-    public TableColumn productNameCol;
-    public TableColumn productInvCol;
-    public TableColumn productCostCol;
+    public TableView customerTable;
+    public TableView ticketTable;
     public TextField productSearchField;
     public TextField partSearchField;
+    public TableColumn ticketIdCol;
+    public TableColumn ticketCreationDateCol;
+    public TableColumn ticketStatusCol;
+    public TableColumn ticketPriorityCol;
+    public TableColumn customerIdCol;
+    public TableColumn customerNameCol;
+    public TableColumn customerEmailCol;
+    public TableColumn customerPhoneCol;
     Stage stage;
     Parent scene;
 
@@ -67,7 +67,7 @@ public class MainFormController implements Initializable {
             loader.load();
 
             ModifyCustomerController MPFController = loader.getController();
-            MPFController.sendCustomer((Customer) partsTable.getSelectionModel().getSelectedItem());
+            MPFController.sendCustomer((Customer) customerTable.getSelectionModel().getSelectedItem());
 
             stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
             Parent scene = loader.getRoot();
@@ -98,11 +98,11 @@ public class MainFormController implements Initializable {
         if (result.get() == ButtonType.OK)
         {
             try {
-                Customer deletedPart = (Customer) partsTable.getSelectionModel().getSelectedItem();
+                Customer deletedPart = (Customer) customerTable.getSelectionModel().getSelectedItem();
 
                 int id = deletedPart.getId();
 
-                partsTable.getItems().removeAll(partsTable.getSelectionModel().getSelectedItem());
+                customerTable.getItems().removeAll(customerTable.getSelectionModel().getSelectedItem());
 
                 for (Customer part : Database.getAllCustomers())
                     if (part.getId() > id)
@@ -141,7 +141,7 @@ public class MainFormController implements Initializable {
             loader.load();
 
             ModifyTicketController MPFController = loader.getController();
-            MPFController.sendProduct((Ticket) productsTable.getSelectionModel().getSelectedItem());
+            MPFController.sendProduct((Ticket) ticketTable.getSelectionModel().getSelectedItem());
 
             stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
             Parent scene = loader.getRoot();
@@ -174,7 +174,7 @@ public class MainFormController implements Initializable {
         if (result.get() == ButtonType.OK)
         {
             try {
-                Ticket selectedProduct = (Ticket) productsTable.getSelectionModel().getSelectedItem();
+                Ticket selectedProduct = (Ticket) ticketTable.getSelectionModel().getSelectedItem();
 
                 int id = selectedProduct.getId();
 
@@ -185,7 +185,7 @@ public class MainFormController implements Initializable {
                     deleteError.showAndWait();
                     return;
                 } else
-                    productsTable.getItems().removeAll(productsTable.getSelectionModel().getSelectedItem());
+                    ticketTable.getItems().removeAll(ticketTable.getSelectionModel().getSelectedItem());
 
                 // makes sure that Ids are never duplicated by decrementing each higher product id by one when a part is deleted. This is necessary due to the way ids are generated
                 for (Ticket product : Database.getAllTickets())
@@ -203,18 +203,18 @@ public class MainFormController implements Initializable {
     /** Searches for products by a given integer or string.
      * @param event Text is entered in search bar
      * */
-    public void onProductSearch(KeyEvent event) {
+    public void onTicketSearch(KeyEvent event) {
 
-        String searchString = productSearchField.getText();
-        ObservableList<Ticket> searchResults = Database.searchTicket(searchString);
+        int searchID = Integer.parseInt(productSearchField.getText());
+        ObservableList<Ticket> searchResults = (ObservableList<Ticket>) Database.searchTicket(searchID);
 
         try
         {
             while (searchResults.isEmpty()) {
-                int searchId = Integer.parseInt(searchString);
+                int searchId = searchID;
                 searchResults.add(Database.searchTicket(searchId));
             }
-            productsTable.setItems(searchResults);
+            ticketTable.setItems(searchResults);
         }
         catch (NumberFormatException exception) {
             Alert noProductsFound = new Alert(Alert.AlertType.ERROR);
@@ -239,7 +239,7 @@ public class MainFormController implements Initializable {
                 int searchId = Integer.parseInt(searchString);
                 searchResults.add(Database.searchCustomer(searchId));
             }
-            partsTable.setItems(searchResults);
+            customerTable.setItems(searchResults);
         }
         catch (NumberFormatException exception) {
             Alert noPartsFound = new Alert(Alert.AlertType.ERROR);
@@ -257,17 +257,17 @@ public class MainFormController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        productsTable.setItems(Database.getAllTickets());
-        productIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-        productNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-        productInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
-        productCostCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+        customerTable.setItems(Database.getAllCustomers());
+        customerIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        customerNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        customerEmailCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        customerPhoneCol.setCellValueFactory(new PropertyValueFactory<>("price"));
 
-        partsTable.setItems(Database.getAllCustomers());
-        partIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-        partNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-        partInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
-        partCostCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+        ticketTable.setItems(Database.getAllTickets());
+        ticketIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        ticketCreationDateCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        ticketStatusCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        ticketPriorityCol.setCellValueFactory(new PropertyValueFactory<>("price"));
 
     }
 
