@@ -4,9 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.InHouse;
 import model.Inventory;
-import model.Outsourced;
 import model.Ticket;
 
 import java.io.IOException;
@@ -52,18 +50,6 @@ public class InventoryApplication extends Application {
 
         Ticket trailblazer = new Ticket(6, "Trail Blazer", 40000, 7, 5, 20);
         Inventory.addProduct(trailblazer);
-
-        Outsourced sw = new Outsourced(1, "Steering Wheel", 500.00, 15, 10, 20, "Honda");
-        Inventory.addPart(sw);
-
-        InHouse tire = new InHouse(2, "Tire", 220, 15, 10, 20, 100);
-        Inventory.addPart(tire);
-
-        Outsourced windshield = new Outsourced(3, "Windshield", 500.00, 15, 10, 20, "Chevrolet");
-        Inventory.addPart(windshield);
-
-        InHouse battery = new InHouse(4, "Battery", 150, 50, 10, 200, 84);
-        Inventory.addPart(battery);
 
     }
 

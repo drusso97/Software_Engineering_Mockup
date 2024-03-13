@@ -106,16 +106,6 @@ public class CreateCustomerController implements Initializable {
                 return;
             }
 
-
-            if (inHouse.isSelected()) {
-                int machineId = Integer.parseInt(toggleTFS);
-                InHouse newInHouse = new InHouse(id, nameS, price, stock, min, max, machineId);
-                Inventory.addPart(newInHouse);
-            } else {
-                Outsourced newOutsourced = new Outsourced(id, nameS, price, stock, min, max, toggleTFS);
-                Inventory.addPart(newOutsourced);
-            }
-
             stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
             scene = FXMLLoader.load(getClass().getResource("/view/MainForm.fxml"));
             stage.setScene(new Scene(scene));

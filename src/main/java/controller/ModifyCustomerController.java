@@ -116,15 +116,6 @@ public class ModifyCustomerController implements Initializable {
 
             int index = id - 1;
 
-            if (inHouse.isSelected()) {
-                int machineId = Integer.parseInt(toggleTFS);
-                InHouse newPart = new InHouse(id, nameS, price, stock, min, max, machineId);
-                Inventory.updatePart(index, newPart);
-            } else {
-                Outsourced newPart = new Outsourced(id, nameS, price, stock, min, max, toggleTFS);
-                Inventory.updatePart(index, newPart);
-            }
-
             stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
             scene = FXMLLoader.load(getClass().getResource("/view/MainForm.fxml"));
             stage.setScene(new Scene(scene));
@@ -147,21 +138,7 @@ public class ModifyCustomerController implements Initializable {
 
         partIdLbl.setText(String.valueOf(selectedCustomer.getId()));
         nameTF.setText(String.valueOf(selectedCustomer.getName()));
-        invTF.setText(String.valueOf(selectedCustomer.getStock()));
-        priceTF.setText(String.valueOf(selectedCustomer.getPrice()));
-        maxTF.setText(String.valueOf(selectedCustomer.getMax()));
-        minTF.setText(String.valueOf(selectedCustomer.getMin()));
 
-        if(selectedCustomer instanceof Outsourced) {
-            toggleTF.setText(String.valueOf(((Outsourced) selectedCustomer).getCompanyName()));
-            Outsourced.setSelected(true);
-            toggleText.setText("Company Name");
-        }
-        else if(selectedCustomer instanceof InHouse) {
-            toggleTF.setText(String.valueOf(((InHouse) selectedCustomer).getMachineId()));
-            inHouse.setSelected(true);
-            toggleText.setText("Machine ID");
-        }
     }
 
     /** Initialize.

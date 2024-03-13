@@ -7,18 +7,13 @@ public abstract class Customer {
 
     private int id;
     private String name;
-    private int stock;
-    private double price;
-    private int min;
-    private int max;
-
-    protected Customer(int id, String name, double price, int stock, int min, int max) {
+    private String phoneNumber;
+    private String emailAddress;
+    protected Customer(int id, String name, String phoneNumber, String emailAddress) {
         this.id = id;
         this.name = name;
-        this.price = price;
-        this.stock = stock;
-        this.min = min;
-        this.max = max;
+        this.phoneNumber = phoneNumber;
+        this.emailAddress = emailAddress;
     }
 
     /**
@@ -47,62 +42,6 @@ public abstract class Customer {
      */
     public void setName(String name) {
         this.name = name;
-    }
-
-    /**
-     * @return the part's stock
-     */
-    public int getStock() {
-        return stock;
-    }
-
-    /**
-     * @param stock the part's stock
-     */
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
-
-    /**
-     * @return the part's price
-     */
-    public double getPrice() {
-        return price;
-    }
-
-    /**
-     * @param price the part's price
-     */
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    /**
-     * @return the minimum stock
-     */
-    public int getMin() {
-        return min;
-    }
-
-    /**
-     * @param min the minimum stock
-     */
-    public void setMin(int min) {
-        this.min = min;
-    }
-
-    /**
-     * @return the maximum stock
-     */
-    public int getMax() {
-        return max;
-    }
-
-    /**
-     * @param max the maximum stock
-     */
-    public void setMax(int max) {
-        this.max = max;
     }
 }
 
