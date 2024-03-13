@@ -260,8 +260,8 @@ public class MainFormController implements Initializable {
         customerTable.setItems(Database.getAllCustomers());
         customerIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         customerNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-        customerEmailCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
-        customerPhoneCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+        customerEmailCol.setCellValueFactory(new PropertyValueFactory<>("emailAddress"));
+        customerPhoneCol.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
 
         ticketTable.setItems(Database.getAllTickets());
         ticketIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));

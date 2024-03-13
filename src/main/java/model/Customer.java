@@ -7,6 +7,7 @@ public class Customer {
 
     private int id;
     private String name;
+
     private String phoneNumber;
     private String emailAddress;
     public Customer(int id, String name, String phoneNumber, String emailAddress) {
@@ -43,6 +44,23 @@ public class Customer {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
 }
 
 
