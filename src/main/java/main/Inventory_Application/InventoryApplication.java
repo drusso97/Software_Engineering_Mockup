@@ -26,7 +26,7 @@ public class InventoryApplication extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(InventoryApplication.class.getResource("/view/MainForm.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 995, 360);
-        stage.setTitle("Inventory Application");
+        stage.setTitle("ClientFlow v1.0");
         stage.setScene(scene);
         stage.show();
     }
