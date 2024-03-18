@@ -3,139 +3,90 @@ package model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.time.LocalDate;
+
 /**
  * Class defines product objects.
  * */
 public class Ticket {
 
-    private ObservableList<Customer> associatedParts = FXCollections.observableArrayList();
-    private int id;
-    private String name;
-    private double price;
-    private int stock;
-    private int min;
-    private int max;
+    private int ticketID;
+    private int customerID;
+    private LocalDate creationDate;
+    private String status;
+    private LocalDate deadline;
+    private String description;
+    private String actionTaken;
 
-    public Ticket(int id, String name, double price, int stock, int min, int max) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.stock = stock;
-        this.min = min;
-        this.max = max;
+    public Ticket(int ticketID, int customerID, LocalDate creationDate, String status, LocalDate deadline, String description, String actionTaken) {
+        this.ticketID = ticketID;
+        this.customerID = customerID;
+        this.creationDate = creationDate;
+        this.status = status;
+        this.deadline = deadline;
+        this.description = description;
+        this.actionTaken = actionTaken;
     }
 
     /**
      * @return the product's id
      */
-    public int getId() {
-        return id;
+    public int getTicketID() {
+        return ticketID;
     }
 
     /**
-     * @param id the product's id
+     * @param ticketID the product's id
      */
-    public void setId(int id) {
-        this.id = id;
+    public void setTicketID(int ticketID) {
+        this.ticketID = ticketID;
     }
 
-    /**
-     * @return the product's name
-     */
-    public String getName() {
-        return name;
+    public int getCustomerID() {
+        return customerID;
     }
 
-    /**
-     * @param name the product's name
-     */
-    public void setName(String name) {
-        this.name = name;
+    public void setCustomerID(int customerID) {
+        this.customerID = customerID;
     }
 
-    /**
-     * @return the product's stock
-     */
-    public int getStock() {
-        return stock;
+    public LocalDate getCreationDate() {
+        return creationDate;
     }
 
-    /**
-     * @param stock the product's stock
-     */
-    public void setStock(int stock) {
-        this.stock = stock;
+    public void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
     }
 
-    /**
-     * @return the product's price
-     */
-    public double getPrice() {
-        return price;
+    public String getStatus() {
+        return status;
     }
 
-    /**
-     * @param price the product's price
-     */
-    public void setPrice(double price) {
-        this.price = price;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    /**
-     * @return the minimum stock
-     */
-    public int getMin() {
-        return min;
+    public LocalDate getDeadline() {
+        return deadline;
     }
 
-    /**
-     * @param min the minimum stock
-     */
-    public void setMin(int min) {
-        this.min = min;
+    public void setDeadline(LocalDate deadline) {
+        this.deadline = deadline;
     }
 
-    /**
-     * @return the maximum stock
-     */
-    public int getMax() {
-        return max;
+    public String getDescription() {
+        return description;
     }
 
-    /**
-     * @param max the maximum stock
-     */
-    public void setMax(int max) {
-        this.max = max;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    /**
-     * Adds a part to the associated parts list
-     * @param part The part to be added
-     */
-    public void addAssociatedPart(Customer part) {
-        associatedParts.add(part);
+    public String getActionTaken() {
+        return actionTaken;
     }
 
-    /**
-     * Deletes a part from the associated parts list
-     * @param selectedAssociatedPart The part to be deleted
-     * @return true
-     */
-    public boolean deleteAssociatedPart(Customer selectedAssociatedPart) {
-        if (associatedParts.contains(selectedAssociatedPart)) {
-            associatedParts.remove(selectedAssociatedPart);
-            return true;
-        }
-        else
-            return false;
-    }
-
-    /**
-     * Returns all associated parts for a given product
-     * @return associatedParts
-     */
-    public ObservableList<Customer> getAllAssociatedParts() {
-        return associatedParts;
+    public void setActionTaken(String actionTaken) {
+        this.actionTaken = actionTaken;
     }
 }

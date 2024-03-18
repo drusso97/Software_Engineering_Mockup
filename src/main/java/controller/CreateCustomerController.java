@@ -36,7 +36,7 @@ public class CreateCustomerController implements Initializable {
     void onActionDisplayMainMenu(ActionEvent actionEvent) throws IOException {
 
         stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(getClass().getResource("/view/MainForm.fxml"));
+        scene = FXMLLoader.load(getClass().getResource("/view/MainMenu.fxml"));
         stage.setScene(new Scene(scene));
         stage.show();
     }
@@ -107,7 +107,7 @@ public class CreateCustomerController implements Initializable {
             }
 
             stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
-            scene = FXMLLoader.load(getClass().getResource("/view/MainForm.fxml"));
+            scene = FXMLLoader.load(getClass().getResource("/view/MainMenu.fxml"));
             stage.setScene(new Scene(scene));
             stage.show();
 

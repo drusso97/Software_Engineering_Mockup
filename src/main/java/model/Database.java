@@ -53,7 +53,7 @@ public class Database {
     public static Ticket searchTicket(int ticketID) {
 
         for(Ticket ticket : Database.getAllTickets())
-            while(ticket.getId() == ticketID) {
+            while(ticket.getTicketID() == ticketID) {
                 return ticket;
             }
         Alert ticketNotFound = new Alert(Alert.AlertType.ERROR);

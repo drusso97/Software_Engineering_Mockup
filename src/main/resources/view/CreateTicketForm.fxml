@@ -59,12 +59,12 @@
                   <TextField fx:id="idTF" editable="false" promptText="Auto Gen - Disabled" GridPane.columnIndex="1" />
                   <DatePicker fx:id="creationDatePicker" disable="true" editable="false" prefHeight="25.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <ComboBox fx:id="ticketStatusCB" nodeOrientation="RIGHT_TO_LEFT" prefWidth="150.0" promptText="Select Status" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
-                  <DatePicker fx:id="creationDatePicker1" prefHeight="25.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <ComboBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="244.0" promptText="Select Customer" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <DatePicker fx:id="deadlineDP" prefHeight="25.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <ComboBox fx:id="custTF" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="244.0" promptText="Select Customer" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label text="Description:" GridPane.rowIndex="5" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="descTF" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <Label text="Action Taken:" GridPane.rowIndex="6" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <TextField fx:id="actionTakenTF" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                </children>
             </GridPane>
          </children>

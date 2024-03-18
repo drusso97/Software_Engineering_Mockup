@@ -20,7 +20,7 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class MainFormController implements Initializable {
+public class MainMenuController implements Initializable {
 
     public TableView customerTable;
     public TableView ticketTable;
@@ -137,7 +137,7 @@ public class MainFormController implements Initializable {
 
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/view/ModifyProductForm.fxml"));
+            loader.setLocation(getClass().getResource("/view/ModifyTicketForm.fxml"));
             loader.load();
 
             ModifyTicketController MPFController = loader.getController();
@@ -176,21 +176,12 @@ public class MainFormController implements Initializable {
             try {
                 Ticket selectedProduct = (Ticket) ticketTable.getSelectionModel().getSelectedItem();
 
-                int id = selectedProduct.getId();
-
-                if (selectedProduct.getAllAssociatedParts().size() > 0) {
-                    Alert deleteError = new Alert(Alert.AlertType.ERROR);
-                    deleteError.setTitle("Cannot delete product!");
-                    deleteError.setContentText("Product has associated parts and cannot be deleted until associated parts are removed!");
-                    deleteError.showAndWait();
-                    return;
-                } else
-                    ticketTable.getItems().removeAll(ticketTable.getSelectionModel().getSelectedItem());
+                int id = selectedProduct.getTicketID();
 
                 // makes sure that Ids are never duplicated by decrementing each higher product id by one when a part is deleted. This is necessary due to the way ids are generated
                 for (Ticket product : Database.getAllTickets())
-                    if (product.getId() > id)
-                        product.setId(product.getId() - 1);
+                    if (product.getTicketID() > id)
+                        product.setTicketID(product.getTicketID() - 1);
             } catch (NullPointerException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error: No product selected!");

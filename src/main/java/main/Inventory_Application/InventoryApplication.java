@@ -9,6 +9,7 @@ import model.Database;
 import model.Ticket;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 /*
     JavaDoc located at Car_Inventory_Application/JavaDoc
@@ -24,7 +25,7 @@ public class InventoryApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(InventoryApplication.class.getResource("/view/MainForm.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(InventoryApplication.class.getResource("/view/MainMenu.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 995, 360);
         stage.setTitle("ClientFlow v1.0");
         stage.setScene(scene);
@@ -34,23 +35,8 @@ public class InventoryApplication extends Application {
     /** This method adds test data. */
     private static void addTestData(){
 
-        Ticket cruze = new Ticket(1, "Cruze", 24000, 12, 10, 20);
-        Database.createTicket(cruze);
-
-        Ticket civic = new Ticket(2, "Civic", 34000, 15, 10, 20);
-        Database.createTicket(civic);
-
-        Ticket jeep = new Ticket(3, "Jeep", 41000, 7, 3, 20);
-        Database.createTicket(jeep);
-
-        Ticket tesla = new Ticket(4, "Tesla", 75000, 5, 2, 17);
-        Database.createTicket(tesla);
-
-        Ticket f150 = new Ticket(5, "F150", 40000, 20, 10, 50);
-        Database.createTicket(f150);
-
-        Ticket trailblazer = new Ticket(6, "Trail Blazer", 40000, 7, 5, 20);
-        Database.createTicket(trailblazer);
+        Ticket ticket1 = new Ticket(1, 1 ,  LocalDate.now(), "Unresolved", LocalDate.of(2024, 3,25), "Can't access account", "Sent customer instructions to reset password");
+        Database.createTicket(ticket1);
 
         Customer customer1 = new Customer(1, "John Doe", "123-456-7891", "jdoe@gmail.com");
         Database.createCustomer(customer1);
