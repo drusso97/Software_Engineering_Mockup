@@ -25,13 +25,15 @@
       </TableView>
       <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="260.0" prefHeight="35.0" prefWidth="480.0" spacing="10.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#onActionCreateCustomer" text="Add" />
+            <Button mnemonicParsing="false" onAction="#onActionCreateCustomer" text="Create" />
             <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onActionModifyPart" text="Modify">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </Button>
             <Button layoutX="444.0" layoutY="27.0" mnemonicParsing="false" onAction="#onActionDeletePart" text="Delete" />
+            <Button mnemonicParsing="false" onAction="#onActionNewOrder" text="New Order" />
+            <Button mnemonicParsing="false" onAction="#onActionShowHistory" text="Order History" />
          </children>
       </HBox>
       <Label prefHeight="41.0" prefWidth="1050.0" text="MJ Logistics Gaming Company">
@@ -71,12 +73,12 @@
             <TableColumn fx:id="ticketIdCol" prefWidth="30.0" text="ID" />
             <TableColumn fx:id="ticketCreationDateCol" prefWidth="150.0" text="Date Created" />
             <TableColumn fx:id="ticketStatusCol" prefWidth="150.0" text="Status" />
-            <TableColumn fx:id="ticketPriorityCol" prefWidth="150.0" text="Priority" />
+            <TableColumn fx:id="ticketDescCol" prefWidth="150.0" text="Description" />
          </columns>
       </TableView>
       <HBox alignment="CENTER_RIGHT" layoutX="505.0" layoutY="260.0" prefHeight="35.0" prefWidth="480.0" spacing="10.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#onActionCreateTicket" text="Add" />
+            <Button mnemonicParsing="false" onAction="#onActionCreateTicket" text="Create" />
             <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onActionModifyTicket" text="Modify">
                <HBox.margin>
                   <Insets />

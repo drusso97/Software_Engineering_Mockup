@@ -29,11 +29,11 @@ public class MainMenuController implements Initializable {
     public TableColumn ticketIdCol;
     public TableColumn ticketCreationDateCol;
     public TableColumn ticketStatusCol;
-    public TableColumn ticketPriorityCol;
     public TableColumn customerIdCol;
     public TableColumn customerNameCol;
     public TableColumn customerEmailCol;
     public TableColumn customerPhoneCol;
+    public TableColumn ticketDescCol;
     Stage stage;
     Parent scene;
 
@@ -255,11 +255,16 @@ public class MainMenuController implements Initializable {
         customerPhoneCol.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
 
         ticketTable.setItems(Database.getAllTickets());
-        ticketIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-        ticketCreationDateCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-        ticketStatusCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
-        ticketPriorityCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+        ticketIdCol.setCellValueFactory(new PropertyValueFactory<>("ticketID"));
+        ticketCreationDateCol.setCellValueFactory(new PropertyValueFactory<>("creationDate"));
+        ticketStatusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
+        ticketDescCol.setCellValueFactory(new PropertyValueFactory<>("description"));
 
     }
 
+    public void onActionShowHistory(ActionEvent actionEvent) {
+    }
+
+    public void onActionNewOrder(ActionEvent actionEvent) {
+    }
 }
